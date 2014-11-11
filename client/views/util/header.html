@@ -1,0 +1,52 @@
+<template name="header">
+<header>
+<div class="profileLogo"> 
+    <!-- Profile logo. Add a img tag in place of <span> -->
+        <a class="logoPlaceholder" href="{{pathFor 'foodsList'}}">BOMBAY EXPRESS</a>
+        
+        <div class="nav-collapse collapse">
+
+            <ul class = "nav pull-center" >
+        		<li> {{> loginButtons}} </li>
+        	</ul>
+        </div>
+ <!--<p class="logoPlaceholder">BOMBAY EXPRESS</p> -->
+</div>
+
+
+  <div class="profilePhoto"> 
+    <!-- Profile photo --> 
+    <img class="circle" src="img/indian_food.jpg" alt="sample">
+  </div>
+  <!-- Identity details -->
+  <div class="profileHeader">
+    <h1>BOMBAY EXPRESS</h1>
+    <h3>QUICK INDIAN YUMMY BITES</h3>
+    <hr>
+	{{ > homesList }}
+  </div>
+  <!-- Links to Social network accounts -->
+  <div class="socialNetworkNavBar">
+    <div class="socialNetworkNav"> 
+      <!-- Add a Anchor tag with nested img tag here --> 
+      <img src="img/social.png" alt="sample">
+    </div>
+    <div class="socialNetworkNav"> 
+      <!-- Add a Anchor tag with nested img tag here -->
+         <img src="img/social.png"  alt="sample">
+    </div>
+    <div class="socialNetworkNav"> 
+      <!-- Add a Anchor tag with nested img tag here -->
+         <img src="img/social.png"  alt="sample">
+    </div>
+    <div class="socialNetworkNav"> 
+      <!-- Add a Anchor tag with nested img tag here --> 
+         <img src="img/social.png"  alt="sample">
+    </div>
+  </div>
+</header>
+
+</template>    
+	
+	
+	

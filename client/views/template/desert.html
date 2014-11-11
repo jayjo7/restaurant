@@ -1,0 +1,17 @@
+<template name="desertsList">
+
+  <!-- Entree details -->
+  <section class="section1">
+    <h1>Deserts</h1>
+    <hr class="sectionTitleRule">
+    <hr>
+    <div class="section1Content">
+    	
+    	    {{#each deserts}}
+      <h2 class="sectionTitle">{{ name }}  - <span class="price">${{ charge}}</span></h2>
+    		{{/each}}
+
+    </div>
+  </section>
+
+</template>
