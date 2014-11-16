@@ -1,0 +1,28 @@
+<template name="foodsToOrder">
+	<div class="page-header">
+		<h1>
+			<span class="label-important label">{{category}}</span><small>Products</small>
+		</h1>
+	</div>
+	{{#each productlist}}
+		{{>product}}
+	{{else}}
+	<div class="page-header">
+		<h1>
+			<small>{{#if catnotselected}}Select A Category{{else}}No Products Found{{/if}}</small>
+		</h1>			
+	</div>	
+	{{/each}}
+</template>
+<template name="product">
+	<div class="well span3">
+		<ul id="{{_id}}" class="nav nav-list">
+			<li><img class="thumbnail" src="/{{thumb}}"/></li>
+			<li><strong>{{name}}</strong></li>
+			<li>{{desc}}</li>
+			<li>{{currency price}}</li> 
+			<input placeholder="Qty" class="input input-mini prodqty" value="0"/><a class="btn btn-mini addcart" href="#">Add</a>
+		</ul>
+	</div>
+
+</template>
