@@ -1,0 +1,12 @@
+<template name="foodCategoriesToOrder">
+	<div class="page-header">
+		<h1>
+			<small>Categories</small>
+		</h1>
+	</div>
+	<ui class="nav navlist">
+		{{#each foodCategories}}
+		<li><a href="/{{name}}">{{name}}</a></li>
+		{{/each}}
+	</ui>
+</template>

@@ -2,7 +2,7 @@ Template.homesList.helpers({
 
 	homes: function()
 	{
-		return Homes.find({},{sort: { WebId: 1 } });
+		return Homes.find({},{sort: { webid: 1 } });
 	}
 });
 
