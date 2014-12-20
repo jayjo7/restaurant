@@ -1,20 +1,18 @@
 <template name="layoutOrder">
-	<div class="container">
- 			{{ > header}}
+	<div class="container-fluid">
+ 			{{ > topNav}}
 		<div class="row">
 			
-			<div class="span2">
-				{{ > yield 'foodCategoriesToOrder' }}
-			</div>
-			<div class="span7">
+			<div class="col-md-8">
 				{{> yield 'foodsToOrder'}}
 			</div>
-			<div class="span3">
+			<div class="col-md-4">
 				{{> yield 'cart'}}
 			</div>
 		
 	    </div>
-	    
-	    {{ > footer }}
+	    <div>
+	    	{{ > footer }}
+	    </div>	
   </div>
   </template>

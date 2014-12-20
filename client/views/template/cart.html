@@ -12,12 +12,12 @@
 			<th></th>
 		</thead>
 		<tbody>
-			{{#each cartitems}}
+			{{#each shopCart}}
 			<tr>
 				<td>{{qty}}</td>
 				<td>{{productname}}</td>
-				<td>{{price}}</td>
-				<td><span class="label-important label removeci">X</span></td>
+				<td>{{currency price}}</td>
+				<td><span class="btn btn-link removeci">X</span></td>
 			</tr>
 			{{else}}
 				<tr>
@@ -26,17 +26,19 @@
 			{{/each}}
 			<tr>
 	            <td class="totalcol" colspan="2">SubTotal:</td>
-	            <td colspan="2">{{currency cartitems.subtotal}}</td>
+	            <td colspan="2">{{currency shopCart.subtotal}}</td>
 	        </tr>
 	        <tr>
-	            <td class="totalcol" colspan="2">Tax 6%:</td>
-	            <td colspan="2">{{currency cartitems.tax}}</td>
+	            <td class="totalcol" colspan="2">Tax 9.2%:</td>
+	            <td colspan="2">{{currency shopCart.tax}}</td>
 	        </tr>
 	        <tr>
 	            <td class="totalcol" colspan="2">Total:</td>
-	            <td colspan="2">{{currency cartitems.total}}</td>
+	            <td colspan="2">{{currency shopCart.total}}</td>
 	        </tr>
 			
 		</tbody>
 	</table>
+	  <button class="btn btn-link cancelOrder">Cancel</button>
+      <button class="btn btn-link confirmOrder">Complete Order</button> 
 </template>

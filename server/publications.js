@@ -13,7 +13,14 @@ Meteor.publish('foodCategories', function(){
 	}
 	);		
 	
+Meteor.publish('cartItems', function(sessid){
 
+	console.log("In Publish: sessid " + sessid );
+
+	return  CartItems.find({session: sessid });
+
+	}
+	);	
 	
 	
 	

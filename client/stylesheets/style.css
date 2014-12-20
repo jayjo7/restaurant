@@ -1,427 +1,160 @@
-/* Global Styles */
+.grid-block, .main, .post, .comments li, .comment-form {
+  background: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
 
 body {
-	margin-left: auto;
-	margin-right: auto;
-	width: 92%;
-	max-width: 960px;
-	padding-left: 2.275%;
-	padding-right: 2.275%;
-	font-family: 'Montserrat', sans-serif;
-	color: rgba(255,255,255,1.00);
-	background-color: #E98200;
+  background: #eee;
+  color: #666666; }
+
+.navbar {
+  margin-bottom: 10px; }
+  /* line 32, ../sass/style.scss */
+  .navbar .navbar-inner {
+    -webkit-border-radius: 0px 0px 3px 3px;
+    -moz-border-radius: 0px 0px 3px 3px;
+    -ms-border-radius: 0px 0px 3px 3px;
+    -o-border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px; }
+
+#spinner {
+  height: 300px; }
+
+.post {
+  /* For modern browsers */
+  /* For IE 6/7 (trigger hasLayout) */
+  *zoom: 1;
+  position: relative;
+  opacity: 1; }
+  .post:before, .post:after {
+    content: "";
+    display: table; }
+  .post:after {
+    clear: both; }
+ .post.invisible {
+    opacity: 0; }
+  .post.instant {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none; }
+  .post.animate{
+    -webkit-transition: all 300ms 0ms;
+    -webkit-transition-delay: ease-in;
+    -moz-transition: all 300ms 0ms ease-in;
+    -o-transition: all 300ms 0ms ease-in;
+    transition: all 300ms 0ms ease-in; }
+  .post .upvote {
+    display: block;
+    margin: 7px 12px 0 0;
+    float: left; }
+  .post .post-content {
+    float: left; }
+    .post .post-content h3 {
+      margin: 0;
+      line-height: 1.4;
+      font-size: 18px; }
+      .post .post-content h3 a {
+        display: inline-block;
+        margin-right: 5px; }
+      .post .post-content h3 span {
+        font-weight: normal;
+        font-size: 14px;
+        display: inline-block;
+        color: #aaaaaa; }
+    .post .post-content p {
+      margin: 0; }
+  .post .discuss {
+    display: block;
+    float: right;
+    margin-top: 7px; }
+    .comments {
+  list-style-type: none;
+  margin: 0; }
+  .comments li h4 {
+    font-size: 16px;
+    margin: 0; }
+    .comments li h4 .date {
+      font-size: 12px;
+      font-weight: normal; }
+    .comments li h4 a {
+      font-size: 12px; }
+  .comments li p:last-child {
+    margin-bottom: 0; }
+
+.dropdown-menu span {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  line-height: 20px;
+  color: #bbb;
+  white-space: nowrap; }
+  .load-more {
+  display: block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  margin-bottom: 10px; }
+  .load-more:hover {
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.1); }
+
+.posts .spinner-container{
+  position: relative;
+  height: 100px;
 }
-.circle {
-	width: 300px;
-	height: 300px;
-	background-size: cover;
-	display: block;
-	border-radius: 200px;
-	-webkit-border-radius: 200px;
-	-moz-border-radius: 200px;
+.jumbotron{
+  text-align: center;
 }
-/* Header */
-header {
-	text-align: center;
-	display: block;
-	color: #000000;
-}
-header .profileLogo .logoPlaceholder {
-	background-color: rgba(208,207,207,1.00);
-	width: 187px;
-	text-align: center;
-}
-header .logoPlaceholder span {
-	width: 80px;
-	height: 22px;
-	font-family: 'Montserrat', sans-serif;
-	color: rgba(255,255,255,1.00);
-	font-size: 30px;
-	font-weight: 700;
-	line-height: 53px;
-}
-header .profilePhoto {
-}
-header .profileHeader h1 {
-	font-family: 'Montserrat', sans-serif;
-	color: rgba(244,244,244,1.00);
-	font-size: 30px;
-	font-weight: 700;
-	line-height: 24px;
-}
-.price {
-	font-size: 18px;
-	background-color: #db4b23;
-	padding: .5%;
-}
-header .profileHeader h3 {
-	font-family: sans-serif;
-	color: rgba(255,204,95,1.00);
-	font-size: 16px;
-	font-weight: 700;
-	line-height: 24px;
-}
-hr {
-	border: 0;
-	height: 1px;
-	background-image: -webkit-linear-gradient(left, rgba(0,0,0,0.75), rgba(0,0,0,0.75), rgba(0,0,0,0));
-	background-image: -moz-linear-gradient(left, rgba(0,0,0,0.75), rgba(0,0,0,0.75), rgba(0,0,0,0));
-	background-image: -ms-linear-gradient(left, rgba(0,0,0,0.75), rgba(0,0,0,0.75), rgba(0,0,0,0));
-	background-image: -o-linear-gradient(left, rgba(0,0,0,0.75), rgba(0,0,0,0.75), rgba(0,0,0,0));
-}
-header .profileHeader p {
-	font-family: sans-serif;
-	color: rgba(120,82,0,1.00);
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 1.8;
-	overflow-y: auto;
-}
-header .socialNetworkNavBar {
-	text-align: center;
-	display: block;
-	margin-top: 60px;
-	clear: both;
-}
-header .socialNetworkNavBar .socialNetworkNav {
-	border-radius: 50%;
-	cursor: pointer;
-}
-header .socialNetworkNavBar .socialNetworkNav img:hover {
-	opacity: 0.5;
-	color: #1D1D1D;
-}
-/* Main Content sections */
-.mainContent .section1 {
-	display: block;
-}
-.section1 .sectionTitle, .section2 .sectionTitle {
-	font-family: 'Montserrat', sans-serif;
-	color: rgba(0,0,0,1.00);
-	font-size: 18px;
-	font-weight: 700;
-	text-transform: uppercase;
-}
-.section1 .sectionTitleRule, .section2 .sectionTitleRule {
-	margin: 0 3% 0 0;
-	float: left;
-	clear: both;
-}
-.section1 .sectionTitleRule2, .section2 .sectionTitleRule2 {
-	background-color: rgba(208,207,207,1.00);
-	height: 1px;
-	padding: 0px;
-}
-.mainContent .section1 .section1Content {
-	font-family: ProximaNova;
-	font-size: 14px;
-	font-weight: 100;
-	color: rgba(208,207,207,1.00);
-}
-.mainContent .section1 .section1Content span {
-	color: rgba(255,255,255,1.00);
-	font-family: sans-serif;
-	border-width: thin;
-	border-spacing: 2px 0px;
-	font-style: normal;
-	font-weight: normal;
-	text-decoration: none;
-}
-.section2 .sectionContentTitle {
-	font-family: sans-serif;
-	color: rgba(146,146,146,1.00);
-	font-size: 18px;
-	font-weight: 700;
-}
-.section2 .sectionContentSubTitle {
-	font-family: sans-serif;
-	color: rgba(68,67,67,1.00);
-	font-size: 14px;
-	font-weight: 400;
-}
-.section2 .sectionContent {
-	font-family: sans-serif;
-	color: rgba(146,146,146,1.00);
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 1.8;
-}
-.mainContent {
-	display: block;
-	/* [disabled]background-color: #FFC773;
-*/
-}
-.mainContent .externalResourcesNav .externalResources {
-	background-color: #db4b23;
-	display: inline-block;
-	text-align: center;
-	margin-top: 0px;
-	padding-top: 3%;
-	cursor: pointer;
-}
-.mainContent .externalResourcesNav .externalResources:hover {
-	background-color: #136066;
-}
-.externalResourcesNav .externalResources a {
-	font-family: 'Montserrat', sans-serif;
-	color: rgba(255,255,255,1.00);
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 18px;
-	text-decoration: none;
-}
-.stretch {
-	content: '';
-	display: inline-block;
-	margin-left: 2%;
-	margin-right: 2%;
-}
-/* Footer */
-footer .footerDisclaimer {
-	font-family: sans-serif;
-	font-size: 14px;
-	line-height: 18px;
-	color: rgba(104,103,103,1.00);
-	font-weight: 700;
-}
-footer .footerDisclaimer span {
-	color: rgba(255,255,255,1.00);
-	font-weight: 400;
-}
-footer .footerNote {
-	font-family: sans-serif;
-	font-size: 14px;
-	line-height: 18px;
-	color: rgba(104,103,103,1.00);
-	font-weight: 700;
-}
-footer .footerNote span {
-	color: rgba(244,244,244,1.00);
-	font-weight: 400;
+.jumbotron h2{
+  font-size: 60px;
+  font-weight: 100;
 }
 
-/* Media query for Mobile devices*/
-@media only screen and (min-width : 285px) and (max-width : 480px) {
-/* Header */
-header {
-	width: 100%;
-	float: none;
-}
-header .profileLogo .logoPlaceholder {
-	display: inline-block;
-}
-header .profilePhoto {
-	display: inline-block;
-}
-header .profileHeader {
-	text-align: center;
-	margin-top: 10%;
-}
-header .profileHeader p {
-	text-align: justify;
-}
-header .socialNetworkNavBar {
-	text-align: center;
-	display: block;
-	margin-top: 60px;
-	clear: both;
-	margin-bottom: 15%;
-}
-header .socialNetworkNavBar .socialNetworkNav {
-	width: 60px;
-	height: 60px;
-	display: inline-block;
-	margin-right: 23px;
-}
-/* Main content sections */
-.mainContent .section1 {
-	text-align: center;
-	margin-bottom: 10%;
-}
-.section1 .section1Title, .section2 .section1Title {
-	text-align: center;
-}
-.section1 .sectionTitleRule, .section2 .sectionTitleRule {
-	width: 100%;
-}
-.section1 .sectionTitleRule2, .section2 .sectionTitleRule2 {
-	display: none;
-}
-.mainContent .section1 .section1Content {
-	display: inline-block;
-	text-align: left;
-	font-family: sans-serif;
-	text-align: justify;
-}
-.mainContent .section2 {
-	display: block;
-	text-align: center;
-}
-.section2 .section2Content {
-	margin-top: 10%;
-	text-align: justify;
-	margin-bottom: 10%;
-}
-.mainContent .externalResourcesNav {
-	margin-bottom: 10%;
-}
-.mainContent .externalResourcesNav .externalResources {
-	width: 100%;
-	height: 35px;
-}
-/* Footer */
-footer {
-	display: block;
-	text-align: center;
-	font-family: sans-serif;
-}
+@-webkit-keyframes fadeOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
 }
 
-/* Media Query for Tablets */
-@media only screen and (min-width : 481px) and (max-width : 1024px) {
-/* Header */
-header {
-	width: 100%;
-	float: none;
+@keyframes fadeOut {
+  0% {opacity: 0;}
+  10% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
 }
-header .profileLogo .logoPlaceholder {
-	display: inline-block;
-	font-family: 'Montserrat', sans-serif;
+.errors{
+  position: fixed;
+  z-index: 10000;
+  padding: 10px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  pointer-events: none;
 }
-header .profilePhoto {
-	float: left;
-	clear: both;
-	margin-right: 3%;
-	margin-top: 5%;
-}
-header .profileHeader {
-	text-align: left;
-	margin-top: 7%;
-}
-header .socialNetworkNavBar .socialNetworkNav {
-	width: 74px;
-	height: 74px;
-	display: inline-block;
-	margin-right: 23px;
-}
-/* Main content and sections */
-.section1 .section1Title, .section2 .section1Title {
-	text-align: center;
-}
-.section1 .sectionTitleRule, .section2 .sectionTitleRule {
-	width: 100%;
-}
-.section1 .sectionTitleRule2, .section2 .sectionTitleRule2 {
-	display: none;
-}
-.mainContent .section1 .section1Content {
-	display: block;
-	margin: 0% 0% 0% 20%;
-	font-family: sans-serif;
-	;
-	margin-top: 5%;
-	margin-bottom: 5%;
-}
-.mainContent .section2 {
-	clear: both;
-}
-.section2 .section2Content {
-	padding: 0px;
-	margin-left: 20%;
-	font-family: sans-serif;
-	margin-top: 5%;
-	margin-bottom: 5%;
-}
-.mainContent .externalResourcesNav {
-	margin-left: 20%;
-	margin-top: 40px;
-	margin-bottom: 40px;
-	text-align: center;
-	padding-top: 0px;
-	clear: both;
-}
-.mainContent .externalResourcesNav .externalResources {
-	width: 199px;
-	height: 48px;
-	margin-top: 5%;
-}
-/* Footer */
-footer .footerDisclaimer {
-	float: left;
-	margin-left: 3%;
-	font-family: sans-serif;
-}
-footer .footerNote {
-	float: right;
-	margin-right: 3%;
-	font-family: sans-serif;
-}
-}
-
-/* Desktops and laptops  */
-@media only screen and (min-width:1025px) {
-/* Header */
-header .profileLogo .logoPlaceholder {
-	float: left;
-	margin-bottom: 50px;
-}
-header .profilePhoto {
-	float: left;
-	clear: both;
-	margin-right: 3%;
-}
-header .profileHeader {
-	text-align: left;
-	padding-top: 10%;
-}
-header .socialNetworkNavBar .socialNetworkNav {
-	width: 74px;
-	height: 74px;
-	display: inline-block;
-	margin-right: 23px;
-}
-/* Main content sections */
-.section1 .sectionTitleRule, .section2 .sectionTitleRule {
-	width: 22.5%;
-}
-.mainContent .section1 .section1Content {
-	display: block;
-	margin-top: 0%;
-	margin-right: 0%;
-	margin-left: 26%;
-	margin-bottom: 0%;
-	font-family: sans-serif;
-}
-.mainContent .section2 {
-	clear: both;
-}
-.section2 .section2Content {
-	padding: 0px;
-	margin-left: 26%;
-	font-family: sans-serif;
-}
-.mainContent .externalResourcesNav {
-	margin-top: 40px;
-	margin-bottom: 40px;
-	text-align: center;
-	padding-top: 0px;
-	clear: both;
-}
-.mainContent .externalResourcesNav .externalResources {
-	width: 199px;
-	height: 48px;
-}
-/* Footer */
-footer .footerDisclaimer {
-	float: left;
-	margin-left: 3%;
-	font-family: sans-serif;
-	color: #000000;
-}
-footer .footerNote {
-	float: right;
-	margin-right: 3%;
-	font-family: sans-serif;
-	color: #000000;
-}
-}
+.alert {
+          animation: fadeOut 2700ms ease-in 0s 1 forwards;
+  -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+     -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+  width: 250px;
+  float: right;
+  clear: both;
+  margin-bottom: 5px;
+  pointer-events: auto;
+  }

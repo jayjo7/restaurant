@@ -3,12 +3,11 @@
   <!-- Appetizers details -->
   <section class="section1">
     <h1>Appetizers</h1>
-    <hr class="sectionTitleRule">
     <hr>
     <div class="section1Content">
     	
     	    {{#each appetizers}}
-      <h2 class="sectionTitle">{{ name }}  - <span class="price">${{ charge}}</span></h2>
+      <h2 class="sectionTitle">{{ name }}  - <span class="price">{{ charge}}</span></h2>
     		{{/each}}
 
     </div>
