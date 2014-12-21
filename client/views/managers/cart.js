@@ -76,7 +76,29 @@ Template.cart.events({
             var sessid = Meteor.default_connection._lastSessionId;
             console.log("Confirming orders... " + sessid);
 
-            Meteor.call('orderItems',sessid, Meteor.user());
+            Meteor.call('orderItems',sessid, Meteor.user(), function(error, result){
+
+                if(error)
+                {
+                    console.log("Could not insert the order for the session  = " + sessid);
+
+                }
+                else
+                {
+                    if (confirm("We have received the order, you will receive the notification when it is ready to pickup"))
+                    {
+                        Router.go("foodsList");
+
+                    }
+                    else
+                    {
+                        Router.go("foodsList");
+                    }
+                }
+
+            });
+
+
 
         }
 

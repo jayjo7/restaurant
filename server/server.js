@@ -26,44 +26,46 @@ Meteor.methods({
 			progress="new";
 			var items=[];
 
-			var itemsInCartJay= CartItems.find({session:sessionId});
-			console.log ('itemsInCartJay = ' + itemsInCartJay);
-
-			console.log('Number of items in cart for session ' + sessionId
-				+ ', user  ' + userId +'= ' + itemsInCartJay.count());
-
 			console.log("Order Object before loop" + JSON.stringify(order, null, 4));
 
-			console.log("+++++++++++++++++++++++++++++++++++++++++++");
-			console.log("itemsInCartJay Object before loop" + JSON.stringify(itemsInCartJay, null, 4));
+			var itemsInCart= CartItems.find({session:sessionId});
 
-			for(i=0 ; i < itemsInCartJay.count(); i++) {
+			console.log('Number of items in cart for session ' + sessionId
+				+ ', user  ' + userId +'= ' + itemsInCart.count());
 
-    			console.log("itemsInCartJay[ " +i + "].product = " + itemsInCartJay[i].product);
+			itemsInCart.forEach (function (cartitems)
 
-    			var product = Foods.find({_id: itemsInCartJay[i].product});
-    			console.log("Product Name = " + product.name);
+				{
 
+					console.log("cartitems.product = " + cartitems.product);
+					var product = Foods.findOne({_id: cartitems.product});
+    				console.log("Product Name = " + product.name);
 
-   					items.push({ 
-        			"name" : product.name,
-        			"qty"  : itemsInCartJay[i].qty
+   					items.push(
+   					{ 
+        				"name" : product.name,
+        				"qty"  : cartitems.qty
+					});
 
-    				});
-				}
+   			});
 
-				console.log("Items  Object" + JSON.stringify(items, null, 4));
+			order.items=items;
 
+            console.log("Done Building the Order Object" + JSON.stringify(order, null, 4));
 
-				order.items=items;
+			var itemsToOrder = Orders.insert({ session:sessionId, order:order}, function(error, _id)
+				{
 
-                console.log("Done Building the Order Object" + JSON.stringify(order, null, 4));
+					if(error)
+					{
+						config.log("touble insert the order to mongodb " + order);
 
-			var itemsToOrder = Orders.insert({ session:sessionId, order:order});
-
-
+					}
+					else
+					{
+						Meteor.call('removeAllCartItem',sessionId);
+					}
+				});
 
 	}
-
-
 });
