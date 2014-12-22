@@ -74,6 +74,9 @@ Template.cart.events({
 
 Template.cart.events({
     'click .confirmOrder':function(evt,tmpl){
+
+        if(Meteor.user())
+        {
             //TODO: Verify/Validate login and have enough contact info
             var sessid = Meteor.default_connection._lastSessionId;
             console.log("Confirming orders... " + sessid);
@@ -87,7 +90,10 @@ Template.cart.events({
                 }
                 else
                 {
-                    if (confirm("We have received the order, you will receive the notification when it is ready to pickup"))
+                    //console.log("Meteor.user()= "+ Meteor.user());
+                    var emailId = Meteor.user().emails[0].address;
+                    console.log("emailId = " + emailId);
+                    if (confirm("Received the order, will notify \""+ emailId  + "\" when it is ready to pickup"))
                     {
                         Router.go("foodsList");
 
@@ -99,6 +105,11 @@ Template.cart.events({
                 }
 
             });
+        }
+        else
+        {
+            alert("Please sign in.")
+        }
 
 
 
