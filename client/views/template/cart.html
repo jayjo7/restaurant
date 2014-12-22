@@ -39,6 +39,10 @@
 			
 		</tbody>
 	</table>
-	  <button class="btn btn-link cancelOrder">Cancel</button>
-      <button class="btn btn-link confirmOrder">Complete Order</button> 
+	 {{#if shopCart.itemCount }}
+	 
+	  	<button class="btn btn-link cancelOrder">Cancel</button>
+      	<button class="btn btn-link confirmOrder">Complete Order</button> 
+  	
+  	{{/if}}
 </template>

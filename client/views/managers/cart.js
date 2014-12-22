@@ -6,7 +6,9 @@ Template.cart.helpers ({
     //console.log("In Cart Temlate");
 
     var shopCart = [];
-    var cartItems = CartItems.find({});
+    var sessid = Meteor.default_connection._lastSessionId;
+    var cartItems = CartItems.find({session: sessid});
+    shopCart.itemCount = cartItems.count();
     var total = 0;
 
     cartItems.forEach(function(cartitem){
