@@ -9,20 +9,22 @@ Template.cart.helpers ({
     var sessid = Meteor.default_connection._lastSessionId;
     var cartItems = CartItems.find({session: sessid});
     shopCart.itemCount = cartItems.count();
+    //console.log("shopCart.itemCount = " + shopCart.itemCount);
     var total = 0;
 
     cartItems.forEach(function(cartitem){
         var item = _.extend(cartitem,{});
         var product = Foods.findOne({_id:cartitem.product});
-        //console.log("product.charge = " + product.charge);
-        var charge = product.charge;
-        if(charge.substring(0,1) == "$")
-        {
-            charge = product.charge.substring(1);
-        }
-        //console.log("charge= " + charge);
+        var charge = product.Charge;
+        //console.log("charge = " + charge);
 
-        cartitem.productname = product.name;
+     //   if(charge.substring(0,1) == "$")
+     //   {
+     //       charge = product.Charge.substring(1);
+     //   }
+       // console.log("After charge= " + charge);
+
+        cartitem.productname = product.Name;
         cartitem.price = (Number(charge) * cartitem.qty);
         total += cartitem.price;
         shopCart.push(cartitem);
@@ -57,7 +59,7 @@ Template.cart.helpers ({
 
 Template.cart.events({
     'click .removeci':function(evt,tmpl){
-        console.log("aaaa");
+       // console.log("aaaa");
         Meteor.call('removeCartItem',this._id);
     }
 });
@@ -85,12 +87,20 @@ Template.cart.events({
 
                 if(error)
                 {
-                    console.log("Could not insert the order for the session  = " + sessid);
+                    if(result)
+                    {
+                        console.log("Could not insert the order for the session  = " + sessid + "Order = " + JSON.stringify(result, null, 4));
+                    }
+                    else
+                    {
+                        console.log("Could not insert the order for the session  = " + sessid );
+                    }
 
                 }
                 else
                 {
-                    //console.log("Meteor.user()= "+ Meteor.user());
+
+
                     var emailId = Meteor.user().emails[0].address;
                     console.log("emailId = " + emailId);
                     if (confirm("Received the order, will notify \""+ emailId  + "\" when it is ready to pickup"))

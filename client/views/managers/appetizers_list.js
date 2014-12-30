@@ -2,7 +2,7 @@ Template.appetizersList.helpers({
 
 	appetizers: function()
 	{
-		return Foods.find({$and : [{activate: "Y"}, {category: "Appetizer"}]},{sort: { webid: 1 } });
+		return Foods.find({$and : [{Activate: "Y"}, {Category: "Appetizer"}]},{sort: { WebId: 1 } });
 	}
 });
 

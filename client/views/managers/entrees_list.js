@@ -2,7 +2,7 @@ Template.entreesList.helpers({
 
 	entrees: function()
 	{
-		return Foods.find({$and : [{activate: "Y"}, {category: "Entree"}]},{sort: { webid: 1 } });
+		return Foods.find({$and : [{Activate: "Y"}, {Category: "Entree"}]},{sort: { WebId: 1 } });
 	}
 });
 

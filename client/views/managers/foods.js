@@ -2,12 +2,12 @@ Template.foodList.helpers({
 
 	foods: function()
 	{
-		return Foods.find({},{sort: { webid: 1 } });
+		return Foods.find({},{sort: { WebId: 1 } });
 	},
 
 	foodId:function(obj)
 	{
-		console.log("obj = " + obj);
+		//console.log("obj = " + obj);
 		return obj.valueOf();
 	}
 

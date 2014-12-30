@@ -39,11 +39,11 @@ Meteor.methods({
 
 					console.log("cartitems.product = " + cartitems.product);
 					var product = Foods.findOne({_id: cartitems.product});
-    				console.log("Product Name = " + product.name);
+    				console.log("Product Name = " + product.Name);
 
    					items.push(
    					{ 
-        				"name" : product.name,
+        				"name" : product.Name,
         				"qty"  : cartitems.qty
 					});
 
@@ -59,11 +59,13 @@ Meteor.methods({
 					if(error)
 					{
 						config.log("touble insert the order to mongodb " + order);
+						throw new Meteor.Error(error);
 
 					}
 					else
 					{
 						Meteor.call('removeAllCartItem',sessionId);
+						return order.items;
 					}
 				});
 

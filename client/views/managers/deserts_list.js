@@ -2,7 +2,7 @@ Template.desertsList.helpers({
 
 	deserts: function()
 	{
-		return Foods.find({$and : [{activate: "Y"}, {category: "Desert"}]},{sort: { webid: 1 } });
+		return Foods.find({$and : [{Activate: "Y"}, {Category: "Desert"}]},{sort: { WebId: 1 } });
 	}
 });
 
