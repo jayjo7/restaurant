@@ -18,28 +18,30 @@ Meteor.methods({
 
 	orderItems:function(sessionId, userId){
 
-			console.log('sessionId= ' + sessionId);
-			console.log('userId= ' + userId);
+			//console.log('sessionId= ' + sessionId);
+			//console.log('userId= ' + userId);
 			var order = {};
 			order.orderedAt = new Date();
-			order.status="new";
-			progress="new";
+			order.status='new';
+			order.progress='Just Received';
+			order.sessionId =sessionId;
+			order.user=userId
 			var items=[];
 
-			console.log("Order Object before loop" + JSON.stringify(order, null, 4));
+			//console.log("Order Object before loop" + JSON.stringify(order, null, 4));
 
 			var itemsInCart= CartItems.find({session:sessionId});
 
 			console.log('Number of items in cart for session ' + sessionId
-				+ ', user  ' + userId +'= ' + itemsInCart.count());
+				+ ', user  ' + userId.emails[0].address +' = ' + itemsInCart.count());
 
 			itemsInCart.forEach (function (cartitems)
 
 				{
 
-					console.log("cartitems.product = " + cartitems.product);
+					//console.log("cartitems.product = " + cartitems.product);
 					var product = Foods.findOne({_id: cartitems.product});
-    				console.log("Product Name = " + product.Name);
+    				//console.log("Product Name = " + product.Name);
 
    					items.push(
    					{ 
@@ -53,7 +55,7 @@ Meteor.methods({
 
             console.log("Done Building the Order Object" + JSON.stringify(order, null, 4));
 
-			var itemsToOrder = Orders.insert({ session:sessionId, order:order}, function(error, _id)
+			var itemsToOrder = Orders.insert({order:order}, function(error, _id)
 				{
 
 					if(error)
