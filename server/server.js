@@ -35,13 +35,20 @@ Meteor.methods({
 			console.log('Number of items in cart for session ' + sessionId
 				+ ', user  ' + userId.emails[0].address +' = ' + itemsInCart.count());
 
+			var totalItemCount = 0;
+			var subTotal = 0;
+
 			itemsInCart.forEach (function (cartitems)
 
 				{
+					totalItemCount += Number(cartitems.qty);
+
 
 					//console.log("cartitems.product = " + cartitems.product);
 					var product = Foods.findOne({_id: cartitems.product});
     				//console.log("Product Name = " + product.Name);
+
+					subTotal +=  (Number(product.Charge) * cartitems.qty);
 
    					items.push(
    					{ 
@@ -50,6 +57,11 @@ Meteor.methods({
 					});
 
    			});
+
+			order.totalItemCount = totalItemCount;	
+			order.subTotal = subTotal;
+			order.total = Number((subTotal + subTotal * .092).toFixed(2));
+
 
 			order.items=items;
 

@@ -9,20 +9,12 @@ Template.cart.helpers ({
     var sessid = Meteor.default_connection._lastSessionId;
     var cartItems = CartItems.find({session: sessid});
     shopCart.itemCount = cartItems.count();
-    //console.log("shopCart.itemCount = " + shopCart.itemCount);
     var total = 0;
 
     cartItems.forEach(function(cartitem){
         var item = _.extend(cartitem,{});
         var product = Foods.findOne({_id:cartitem.product});
         var charge = product.Charge;
-        //console.log("charge = " + charge);
-
-     //   if(charge.substring(0,1) == "$")
-     //   {
-     //       charge = product.Charge.substring(1);
-     //   }
-       // console.log("After charge= " + charge);
 
         cartitem.productname = product.Name;
         cartitem.price = (Number(charge) * cartitem.qty);
@@ -31,11 +23,10 @@ Template.cart.helpers ({
     });
     shopCart.subtotal = total;
     shopCart.tax = shopCart.subtotal * .092;
-    //console.log("shopCart.subtotal  = "+ shopCart.subtotal );
-   // console.log("shopCart.tax = " + shopCart.tax);
+
     shopCart.total = shopCart.subtotal + shopCart.tax;
 
-    //console.log("shopCart = " +shopCart);
+
     return shopCart;
 
        
@@ -52,10 +43,6 @@ Template.cart.helpers ({
 });
 
 
-
-//Template.cart.currency = function(num){
- //   return '$' + Number(num).toFixed(2);
-//};
 
 Template.cart.events({
     'click .removeci':function(evt,tmpl){
