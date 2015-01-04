@@ -11,3 +11,8 @@ sacha:spin
 ian:accounts-ui-bootstrap-3
 mizzao:bootstrap-3
 
+http
+meteorhacks:npm
+
+
+npm-container

@@ -59,7 +59,7 @@ Meteor.methods({
    			});
 
 			order.totalItemCount = totalItemCount;	
-			order.subTotal = subTotal;
+			order.subTotal = Number (subTotal.toFixed(2));
 			order.total = Number((subTotal + subTotal * .092).toFixed(2));
 
 
@@ -79,7 +79,39 @@ Meteor.methods({
 					else
 					{
 						Meteor.call('removeAllCartItem',sessionId);
-						return order.items;
+						try{
+
+							var https = Meteor.npmRequire('request');
+							var options ={
+								url:'https://script.google.com/macros/s/AKfycbzu3126b_QhgPwuwoStDdoF8AVqf2XFfAQ-ars_YmR7SEZgeSc/exec',
+								method: 'POST',
+								body: order,
+								json: true,
+								followAllRedirects: true
+
+							}
+						    https.post(options, function (error, response, body){
+								console.log("error : " + error);
+								console.log("response.statusCode : " + response.statusCode);
+								console.log("body : " + body);
+
+							});
+							//var result = HTTP.call(	'POST', 
+							//						'https://script.google.com/macros/s/AKfycbzu3126b_QhgPwuwoStDdoF8AVqf2XFfAQ-ars_YmR7SEZgeSc/exec',
+                           	//						{ data:order, followRedirects:true }
+                           	//					);
+							//var result = HTTP.call('GET', 'https://script.google.com/macros/s/AKfycbzu3126b_QhgPwuwoStDdoF8AVqf2XFfAQ-ars_YmR7SEZgeSc/exec');
+							//console.log("result = " + result);
+							//for (var key in result)
+							//{
+							//
+							//	console.log("key = " +  key + " : " + result[key]);
+							//}
+						}catch (e)
+						{
+							console.log(e);
+						}
+						//return order.items;
 					}
 				});
 
