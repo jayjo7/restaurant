@@ -24,8 +24,8 @@ Meteor.methods({
 			order.orderedAt = new Date();
 			order.status='new';
 			order.progress='Just Received';
-			order.sessionId =sessionId;
-			order.user=userId
+
+			order.user=userId.emails[0].address;
 			var items=[];
 
 			//console.log("Order Object before loop" + JSON.stringify(order, null, 4));
@@ -57,13 +57,14 @@ Meteor.methods({
 					});
 
    			});
-
+			order.items=items;
 			order.totalItemCount = totalItemCount;	
 			order.subTotal = Number (subTotal.toFixed(2));
 			order.total = Number((subTotal + subTotal * .092).toFixed(2));
 
+			order.sessionId =sessionId;
 
-			order.items=items;
+
 
             console.log("Done Building the Order Object" + JSON.stringify(order, null, 4));
 
