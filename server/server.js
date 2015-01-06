@@ -84,7 +84,7 @@ Meteor.methods({
 
 							var https = Meteor.npmRequire('request');
 							var options ={
-								url:'https://script.google.com/macros/s/AKfycbzu3126b_QhgPwuwoStDdoF8AVqf2XFfAQ-ars_YmR7SEZgeSc/exec',
+								url:'https://script.google.com/macros/s/AKfycbwl0v0pHtBbwPHFy54QnHok5KpkHUVXnRO98sN_GzVPZ0pCdYu2/exec',
 								method: 'POST',
 								body: order,
 								json: true,
