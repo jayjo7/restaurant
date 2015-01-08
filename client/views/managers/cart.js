@@ -13,7 +13,7 @@ Template.cart.helpers ({
 
     cartItems.forEach(function(cartitem){
         var item = _.extend(cartitem,{});
-        var product = Foods.findOne({_id:cartitem.product});
+        var product = Menu.findOne({_id:cartitem.product});
         var charge = product.Charge;
 
         cartitem.productname = product.Name;

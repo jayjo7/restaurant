@@ -45,7 +45,7 @@ Meteor.methods({
 
 
 					//console.log("cartitems.product = " + cartitems.product);
-					var product = Foods.findOne({_id: cartitems.product});
+					var product = Menu.findOne({_id: cartitems.product});
     				//console.log("Product Name = " + product.Name);
 
 					subTotal +=  (Number(product.Charge) * cartitems.qty);

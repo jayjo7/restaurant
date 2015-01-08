@@ -1,1 +1,1 @@
-Homes = new Meteor.Collection('homes');
+Homes = new Mongo.Collection('homes');

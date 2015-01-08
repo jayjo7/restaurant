@@ -1,1 +1,1 @@
-FoodCategories = new Meteor.Collection('foodCategories');
+FoodCategories = new Mongo.Collection('foodCategories');

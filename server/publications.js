@@ -1,5 +1,6 @@
-Meteor.publish('foods', function(){
-	return Foods.find({Activate: "Y"},{sort: { WebId: 1 } });
+Meteor.publish('menu', function(){
+	//return Foods.find({Activate: "Y"},{sort: { WebId: 1 } });
+	return Menu.find();
 	}
 	);	
 	
@@ -8,11 +9,7 @@ Meteor.publish('homes', function(){
 	}
 	);	
 	
-Meteor.publish('foodCategories', function(){
-	return FoodCategories.find({activate: "Y"},{sort: { webid: 1 } });
-	}
-	);		
-	
+
 Meteor.publish('cartItems', function(sessid){
 
 	console.log("In Publish: sessid " + sessid );

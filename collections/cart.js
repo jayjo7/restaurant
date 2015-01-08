@@ -1,2 +1,2 @@
-Cart = new Meteor.Collection('cart');
-CartItems = new Meteor.Collection('cartitems')
+Cart = new Mongo.Collection('cart');
+CartItems = new Mongo.Collection('cartitems')

@@ -2,7 +2,7 @@ Template.foodList.helpers({
 
 	foods: function()
 	{
-		return Foods.find({},{sort: { WebId: 1 } });
+		return Menu.find({},{sort: { WebId: 1 } });
 	},
 
 	foodId:function(obj)
