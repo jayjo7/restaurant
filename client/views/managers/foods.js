@@ -9,7 +9,17 @@ Template.foodList.helpers({
 	{
 		//console.log("obj = " + obj);
 		return obj.valueOf();
+	},
+
+	isAvailable:function(Availability)
+	{
+		//console.log("Availability = " + Availability);
+		if('SoldOut' === Availability)
+			return false;
+		else
+			return true;
 	}
+
 
 });
 

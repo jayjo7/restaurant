@@ -27,10 +27,16 @@
           				<td>{{Name}}</td>
               			<td>${{Charge}}</td>
               			<!-- <td><input class="demo_input" value="0" size="2" maxlength="2"/></td> -->
+                  {{#if isAvailable Availability}}
+                    <td align="right">
+                      <input placeholder="Qty" class="input input-mini prodqty_{{ foodId _id}}" size="2" maxlength="2" />
+                      <a class="btn btn-mini addcart" href="#">Add</a>
+                    </td>
+                  {{else}}   
               			<td align="right">
-              				<input placeholder="Qty" class="input input-mini prodqty_{{ foodId _id}}" size="2" maxlength="2" />
-              				<a class="btn btn-mini addcart" href="#">Add</a>
+                      SoldOut
               			</td>
+                  {{/if}}
             		</tr>
             		{{/each}}
       		</tbody>
