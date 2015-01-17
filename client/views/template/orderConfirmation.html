@@ -1,0 +1,25 @@
+<template name="orderConfirmation">
+
+<h2>Order Confirmation </h2>
+
+We have received your below order: <br><br>
+    {{#each order UniqueId}}
+
+    	Will be ready to pickup in  {{ETA}} minutes.<br><br>
+
+    	Order Number: {{OrderNumber}} <br>
+    	Status:{{Status}}<br>
+    	Received at: {{TimeOrderReceived}} <br>
+    	Customer Name: {{CustomerName}} <br>
+    	Customer Phone: {{CustomerPhone}} <br>
+    	Customer Email: {{CustomerEmail}}<br>
+    	Number of Items: {{TotalItem}} <br>
+    	Items:{{Items}}<br>
+    	SubTotal: {{ currency SubTotal}}<br>
+    	Total:{{currency Total}}
+    {{/each}}
+
+<br>
+
+		
+</template>

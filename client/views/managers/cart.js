@@ -1,3 +1,55 @@
+Template.collectContactInfo.events({
+
+    'submit form': function(event){
+        event.preventDefault();
+        console.log("collectContactInfo form submitted");
+        console.log(event.type);
+        var contactInfo = {};
+
+        contactInfo.phoneNumber = event.target.intputPhoneNumber.value;
+        contactInfo.email=event.target.inputEmail.value;
+        contactInfo.messageToKitchen = event.target.messageToKitchen.value;
+        contactInfo.contactName = event.target.contactName.value;
+        console.log(contactInfo.phoneNumber);
+        console.log(contactInfo.email);
+        console.log(contactInfo.messageToKitchen);
+        console.log(contactInfo.contactName);
+            var sessid = Meteor.default_connection._lastSessionId;
+            console.log("Confirming orders... " + sessid);
+
+         var contact
+
+        console.log("contact = " + contactInfo);
+
+            Meteor.call('orderItems',sessid, contactInfo, function(error, result){
+
+                if(error)
+                {
+                    if(result)
+                    {
+                        console.log("Could not insert the order for the session  = " + sessid + "Order = " + JSON.stringify(result, null, 4));
+                    }
+                    else
+                    {
+                        console.log("Could not insert the order for the session  = " + sessid );
+                    }
+
+                }
+                else
+                {
+                    console.log("sessid = " + sessid);
+
+                    Router.go('orderConfirmation',  {UniqueId: sessid});
+
+                }
+
+            });
+
+
+    }
+
+});
+
 Template.cart.helpers ({
 
     shopCart: function()
@@ -49,6 +101,7 @@ Template.cart.events({
        // console.log("aaaa");
         Meteor.call('removeCartItem',this._id);
     }
+
 });
 
 Template.cart.events({
@@ -67,41 +120,6 @@ Template.cart.events({
         if(Meteor.user())
         {
             //TODO: Verify/Validate login and have enough contact info
-            var sessid = Meteor.default_connection._lastSessionId;
-            console.log("Confirming orders... " + sessid);
-
-            Meteor.call('orderItems',sessid, Meteor.user(), function(error, result){
-
-                if(error)
-                {
-                    if(result)
-                    {
-                        console.log("Could not insert the order for the session  = " + sessid + "Order = " + JSON.stringify(result, null, 4));
-                    }
-                    else
-                    {
-                        console.log("Could not insert the order for the session  = " + sessid );
-                    }
-
-                }
-                else
-                {
-
-
-                    var emailId = Meteor.user().emails[0].address;
-                    console.log("emailId = " + emailId);
-                    if (confirm("Received the order, will notify \""+ emailId  + "\" when it is ready to pickup"))
-                    {
-                        Router.go("foodsList");
-
-                    }
-                    else
-                    {
-                        Router.go("foodsList");
-                    }
-                }
-
-            });
         }
         else
         {

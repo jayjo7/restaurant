@@ -3,7 +3,7 @@ Meteor.publish('menu', function(){
 	return Menu.find();
 	}
 	);	
-	
+
 Meteor.publish('homes', function(){
 	return Homes.find({Activate: "Y"},{sort: { WebId: 1 } });
 	}
@@ -20,7 +20,12 @@ Meteor.publish('cartItems', function(sessid){
 	);	
 	
 	
-	
+	Meteor.publish('orders', function(){
+	//return Foods.find({Activate: "Y"},{sort: { WebId: 1 } });
+	console.log("Count Order = " + Orders.find().count());
+	return Orders.find();
+	}
+	);	
 	
 
 

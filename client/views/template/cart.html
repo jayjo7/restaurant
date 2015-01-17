@@ -46,22 +46,55 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">How do we communicate with you?</h4>
-      </div>
-      <div class="modal-body">
-        Call/Text: (or) Email:
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Complete Order</button>
-      </div>
-    </div>
-  </div>
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+    		{{>collectContactInfo}}
+ 		</div>
+ 	</div>		
 </div>
-  	
-  	{{/if}}
+       
+ {{/if}}
 </template>
+
+
+<template name="collectContactInfo">
+
+    	<form id="lcollectContactInfoForm" class="form-horizontal">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">How do we communicate with you?</h4>
+      		</div>
+    		<div class="modal-body">
+  				<div class="form-group">
+    				<label for="intputPhoneNumber" class="col-sm-2 control-label">Call/Text</label>
+    				<div class="col-sm-3">
+      					<input type="tel" class="form-control" id="intputPhoneNumber" name="phoneNumber" placeholder="Phone Number">
+    				</div>
+     				<label for="inputEmail" class="col-sm-2 control-label">(or)&nbsp;&nbsp;E-mail</label>
+    				<div class="col-sm-5">
+      					<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email Address">
+    				</div>
+    			</div>	
+  			</div>
+  			<div class="form-group">
+  				  <label for="contactName" class="col-sm-2 control-label">Name</label>
+    				<div class="col-sm-3">
+      					<input type="tel" class="form-control" id="contactName" name="contactName" placeholder="Your Name">
+    				</div>
+				<label for="inputMessage" class="col-sm-2 control-label">Any Message?</label>
+    			<div class="col-sm-4">
+      				<textarea class="form-control" rows="1" id="messageToKitchen" placeholder="Message the Kitchen?"></textarea>
+    			</div>
+ 	 		</div>  
+  			<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        		<button type="submit" class="btn btn-primary addContactInfo">Complete Order</button>
+  			</div>
+
+
+ 		</form>
+
+
+
+</template>
+

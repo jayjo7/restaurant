@@ -1,10 +1,31 @@
 Meteor.methods({
 
 	addToCart:function(qty, product, session){
-		if(qty>0){
-			CartItems.insert({qty:qty, product:product, session:session});
+		if(qty>0)
+		{
+			qty = Number (qty);
+			var itemFromCart = CartItems.findOne( { $and:[{product:product}, {session:session}]});
+			if(itemFromCart)
+			{
+				
+			//console.log("itemFromCart.count() = " +itemFromCart.length)
+
+				for (var key in itemFromCart )
+				{
+					console.log("itemFromCart.key = " + itemFromCart[key]);
+				}
+				qty +=Number(itemFromCart.qty);
+				console.log("qty = " + qty);
+
+			}
+
+		
+			CartItems.update({product:product, session:session},{qty:qty, product:product, session:session},{upsert:true});
+
+			//CartItems.insert({qty:qty, product:product, session:session});
 			console.log('Added the session = ' + session);
 			console.log('Added the product = ' + product);
+			
 		}else{
 			console.log('Quantity is Zero');
 		}
@@ -16,16 +37,53 @@ Meteor.methods({
 		CartItems.remove({session:sessionId});
 	},
 
-	orderItems:function(sessionId, userId){
+	getOrder:function(sessionId){
+
+		console.log("sessionId = " + sessionId);
+		var order = Orders.findOne({UniqueId:sessionId});
+		console.log("order = " + order);
+
+		return order;
+
+	},
+
+	getNextSequenceValue: function (){
+		
+		try{
+
+			        var currentId = Counters.findOne({},{sort:{orderNumber:-1}}) || 1;
+
+			        	for(var key in currentId)
+			        	{
+			        		console.log(currentId[key]);
+			        	}
+
+        			var nextOrderumber= Number (currentId.orderNumber) + 1;
+        			Counters.insert({orderNumber:nextOrderumber});
+        			console.log(nextOrderumber);
+        			return nextOrderumber;
+
+        		}catch(error)
+        		{
+        			console.log(error);
+        		}
+   	
+	},
+
+	orderItems:function(sessionId, contactInfo){
 
 			//console.log('sessionId= ' + sessionId);
-			//console.log('userId= ' + userId);
 			var order = {};
-			order.orderedAt = new Date();
-			order.status='new';
-			order.progress='Just Received';
+			order.Status='new';
+			order.OrderNumber=Meteor.call('getNextSequenceValue');
+			order.UniqueId=sessionId;
+			order.TimeOrderReceived = new Date();
+			order.CustomerName=contactInfo.contactName;
+			order.CustomerPhone=contactInfo.phoneNumber;
+			order.CustomerEmail=contactInfo.email;
+			order.MessageToKitchen = contactInfo.messageToKitchen;
 
-			order.user=userId.emails[0].address;
+			var itemString='';
 			var items=[];
 
 			//console.log("Order Object before loop" + JSON.stringify(order, null, 4));
@@ -33,7 +91,7 @@ Meteor.methods({
 			var itemsInCart= CartItems.find({session:sessionId});
 
 			console.log('Number of items in cart for session ' + sessionId
-				+ ', user  ' + userId.emails[0].address +' = ' + itemsInCart.count());
+				+ ', contact  ' + order.CustomerPhone + ' ' +order.CustomerEmail +' = ' + itemsInCart.count());
 
 			var totalItemCount = 0;
 			var subTotal = 0;
@@ -49,7 +107,7 @@ Meteor.methods({
     				//console.log("Product Name = " + product.Name);
 
 					subTotal +=  (Number(product.Charge) * cartitems.qty);
-
+					itemString = itemString + cartitems.qty + " - " + product.Name +'\n';
    					items.push(
    					{ 
         				"name" : product.Name,
@@ -57,10 +115,11 @@ Meteor.methods({
 					});
 
    			});
-			order.items=items;
-			order.totalItemCount = totalItemCount;	
-			order.subTotal = Number (subTotal.toFixed(2));
-			order.total = Number((subTotal + subTotal * .092).toFixed(2));
+			order.itemsObject=items;
+			order.Items= itemString;
+			order.TotalItem = totalItemCount;	
+			order.SubTotal = Number (subTotal.toFixed(2));
+			order.Total = Number((subTotal + subTotal * .092).toFixed(2));
 
 			order.sessionId =sessionId;
 
@@ -68,7 +127,7 @@ Meteor.methods({
 
             console.log("Done Building the Order Object" + JSON.stringify(order, null, 4));
 
-			var itemsToOrder = Orders.insert({order:order}, function(error, _id)
+			var itemsToOrder = Orders.insert(order, function(error, _id)
 				{
 
 					if(error)
@@ -97,6 +156,8 @@ Meteor.methods({
 								console.log("body : " + body);
 
 							});
+
+							return order;
 							//var result = HTTP.call(	'POST', 
 							//						'https://script.google.com/macros/s/AKfycbzu3126b_QhgPwuwoStDdoF8AVqf2XFfAQ-ars_YmR7SEZgeSc/exec',
                            	//						{ data:order, followRedirects:true }
