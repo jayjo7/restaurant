@@ -20,6 +20,7 @@ Template.orderConfirmation.helpers({
 
     currency: function(num)
     {
+        console.log('num = ' + num);
         return '$' + Number(num).toFixed(2);
     }
 

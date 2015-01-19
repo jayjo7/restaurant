@@ -77,7 +77,12 @@ Meteor.methods({
 			order.Status='new';
 			order.OrderNumber=Meteor.call('getNextSequenceValue');
 			order.UniqueId=sessionId;
-			order.TimeOrderReceived = new Date();
+
+			var now =moment().format('MM/DD/YYYY hh:mm:ss A');
+
+			console.log('now = ' + now);
+
+			order.TimeOrderReceived = now;
 			order.CustomerName=contactInfo.contactName;
 			order.CustomerPhone=contactInfo.phoneNumber;
 			order.CustomerEmail=contactInfo.email;
@@ -116,7 +121,7 @@ Meteor.methods({
 
    			});
 			order.itemsObject=items;
-			order.Items= itemString;
+			order.Items= itemString.substring(0, itemString.length-1); // Substring to get rid of the last new character
 			order.TotalItem = totalItemCount;	
 			order.SubTotal = Number (subTotal.toFixed(2));
 			order.Total = Number((subTotal + subTotal * .092).toFixed(2));
