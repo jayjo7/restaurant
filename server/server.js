@@ -61,7 +61,13 @@ Meteor.methods({
         			var nextOrderumber= Number (currentId.orderNumber) + 1;
         			Counters.insert({orderNumber:nextOrderumber});
         			console.log(nextOrderumber);
-        			return nextOrderumber;
+
+        			var sequence = Counters.findOne({orderNumber:nextOrderumber});
+        			for(var key in sequence)
+        			{
+        				console.log(key + " = " +sequence[key]);
+        			}
+        			return sequence;
 
         		}catch(error)
         		{
@@ -70,13 +76,18 @@ Meteor.methods({
    	
 	},
 
-	orderItems:function(sessionId, contactInfo){
+	orderItems:function(sessionId, contactInfo, sequence){
 
-			//console.log('sessionId= ' + sessionId);
+			console.log('In OrderItems');
+
+			       for(var key in sequence)
+        			{
+        				console.log(key + " = " +sequence[key]);
+        			}
 			var order = {};
 			order.Status='new';
-			order.OrderNumber=Meteor.call('getNextSequenceValue');
-			order.UniqueId=sessionId;
+			order.OrderNumber=sequence.orderNumber;
+			order.UniqueId=sequence._id;
 
 			var now =moment().format('MM/DD/YYYY hh:mm:ss A');
 

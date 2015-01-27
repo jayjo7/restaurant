@@ -21,31 +21,49 @@ Template.collectContactInfo.events({
 
         console.log("contact = " + contactInfo);
 
-            Meteor.call('orderItems',sessid, contactInfo, function(error, result){
+        Meteor.call('getNextSequenceValue',function(error, result){
 
-                if(error)
-                {
-                    if(result)
+            if(error)
+            {
+                console.log("Trouble getting the next sequence number");
+            }
+            else
+            {
+                var sequence = result;
+       
+                for(var key in sequence)
                     {
-                        console.log("Could not insert the order for the session  = " + sessid + "Order = " + JSON.stringify(result, null, 4));
+                        console.log("cart.js : " +key + " = " +sequence[key]);
+                    }
+
+                Meteor.call('orderItems',sessid, contactInfo, sequence, function(error, result){
+
+                    if(error)
+                    {
+                        if(result)
+                        {
+                            console.log("Could not insert the order for the session  = " + sessid + "Order = " + JSON.stringify(result, null, 4));
+                        }
+                        else
+                        {
+                            console.log("Could not insert the order for the session  = " + sessid );
+                        }
+
                     }
                     else
                     {
-                        console.log("Could not insert the order for the session  = " + sessid );
+                        console.log("sessid = " + sessid);
+                        console.log("sequence._id= " + sequence._id);
+
+
+                        Router.go('orderConfirmation',  {UniqueId: sequence._id});
+
                     }
 
-                }
-                else
-                {
-                    console.log("sessid = " + sessid);
+                });
+            } 
 
-                    Router.go('orderConfirmation',  {UniqueId: sessid});
-
-                }
-
-            });
-
-
+        });
     }
 
 });
