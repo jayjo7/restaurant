@@ -130,6 +130,14 @@ Meteor.methods({
         				"qty"  : cartitems.qty
 					});
 
+				cartitems.UniqueId = order.UniqueId;
+				cartitems.Charge =product.Charge;
+				cartitems.Name=product.Name;
+				cartitems.product=cartitems.product;
+
+				OrderedItems.update({product:product, UniqueId:order.UniqueId},cartitems,{upsert:true});
+
+
    			});
 			order.itemsObject=items;
 			order.Items= itemString.substring(0, itemString.length-1); // Substring to get rid of the last new character

@@ -7,7 +7,7 @@
     <div class="section1Content">
     	
     	    {{#each entrees}}
-      <h2 class="sectionTitle">{{ Name }}  - <span class="price">{{ currency Charge}}</span>{{ Availability }}</h2>
+      <h2 class="sectionTitle">{{ Name }}  - <span class="price">{{ currency Charge}}</span>&nbsp;{{ isAvailable fontLine }}</h2>
             <h5> {{ Description }} </h5>
 
     		{{/each}}

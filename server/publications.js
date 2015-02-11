@@ -18,6 +18,16 @@ Meteor.publish('cartItems', function(sessid){
 
 	}
 	);	
+
+
+Meteor.publish('ordereditems', function(UniqueId){
+
+	console.log("In Publish (OrderedItems): UniqueId " + UniqueId );
+ 
+	return  OrderedItems.find({UniqueId: UniqueId });
+
+	}
+	);	
 	
 	
 	Meteor.publish('orders', function(){

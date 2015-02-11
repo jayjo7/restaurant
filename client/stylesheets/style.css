@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
+
 .grid-block, .main, .post, .comments li, .comment-form {
   background: #fff;
   -webkit-border-radius: 3px;
