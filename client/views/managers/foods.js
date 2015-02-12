@@ -2,7 +2,9 @@ Template.foodList.helpers({
 
 	foods: function()
 	{
-		return Menu.find({},{sort: { WebId: 1 } });
+		//return Menu.find({},{sort: { WebId: 1 } });
+
+		return Menu.find({"Name" : {"$exists" : true, "$ne" : ""}});
 	},
 
 	foodId:function(obj)
@@ -11,11 +13,11 @@ Template.foodList.helpers({
 		return obj.valueOf();
 	},
 
-	isAvailable:function(Availability)
+	isAvailable:function(fontLine)
 	{
 		//console.log("Availability = " + Availability);
-		if('SoldOut' === Availability)
-			return false;
+		if('line-through' === fontLine)
+			return  false;
 		else
 			return true;
 	}

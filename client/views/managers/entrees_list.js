@@ -4,7 +4,9 @@ Template.entreesList.helpers({
 	{
 		//return Foods.find({$and : [{Activate: "Y"}, {Category: "Entree"}]},{sort: { WebId: 1 } });
 
-		return Menu.find({Category: "Entree"});
+		//return Menu.find({Category: "Entree"});
+		return Menu.find({$and : [{Category: "Entree"}, {Name : {"$exists" : true, "$ne" : ""}}]});
+
 
 	}
 		,
@@ -13,7 +15,7 @@ Template.entreesList.helpers({
     {
         return '$' + Number(num).toFixed(2);
     },
-    
+
     isAvailable:function(fontLine)
 	{
 		//console.log("Availability = " + Availability);
