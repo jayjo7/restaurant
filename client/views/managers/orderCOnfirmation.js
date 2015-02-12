@@ -22,24 +22,6 @@ Template.orderConfirmation.helpers({
     {
         console.log('num = ' + num);
         return '$' + Number(num).toFixed(2);
-    },
-
-    thankyou:function(name)
-    {
-      if(name)
-      {
-        return name +', Thank you!';
-      }
-      else
-      {
-        return 'Thank you!';
-      }
-    },
-
-    ordereditems:function(UniqueId)
-    {
-      console.log("UniqueId = " + UniqueId);
-      return OrderedItems.find({UniqueId:UniqueId});
     }
 
 });
